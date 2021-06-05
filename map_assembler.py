@@ -3,7 +3,7 @@ import os
 import sys
 
 from PIL import Image
-import time
+from timeit import default_timer as timer
 
 # One problem is that the program will generate too big a map because the dynmap will
 # have generated a part of the map that is far from the rest, and that you are not interested in.
@@ -11,7 +11,7 @@ import time
 # So be patient, it should not take more than 5 minutes.
 # 40960x22400 takes 3m40s for me
 
-start_time = time.process_time()
+start_time = timer()
 
 # Put in the map folder the content of "dynmap/web/tiles/world/flat" folder.
 path = "map\\"
@@ -100,4 +100,4 @@ map_img_resize.paste(map_img, (0, 0, width, height))
 map_img_resize.thumbnail((resize_width, resize_height), Image.ANTIALIAS)
 map_img_resize.save("map-resize.png")
 
-print("Creation of the PNG map completed in", time.process_time()-start_time, "seconds.")
+print("Creation of the PNG map completed in", timer()-start_time, "seconds.")
